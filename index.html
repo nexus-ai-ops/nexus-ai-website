@@ -428,7 +428,7 @@
                 <a href="#pricing">Pricing</a>
                 <a href="#team">Team</a>
                 <a href="#blog">Blog</a>
-                <a href="https://cal.com/nexus-ai/discovery" target="_blank" rel="noopener" class="btn btn-primary nav-cta">Book a Call</a>
+                <a href="#contact" class="btn btn-primary nav-cta">Get Your Free Audit</a>
             </div>
         </div>
     </nav>
@@ -463,8 +463,11 @@
                     </div>
                 </div>
                 <div class="hero-cta">
-                    <a href="https://cal.com/nexus-ai/discovery" target="_blank" rel="noopener" class="btn btn-primary">Book a Free Discovery Call</a>
+                    <a href="#contact" class="btn btn-primary">Get Your Free AI Revenue Audit</a>
                     <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
+                </div>
+                <div class="hero-cta-secondary" style="margin-top: 0.75rem; font-size: 0.85rem; color: #6b7280;">
+                    Prefer a call? <a href="https://cal.com/nexus-ai/discovery" target="_blank" rel="noopener" style="color: #3b82f6; text-decoration: none;">Book here</a>
                 </div>
                 <div class="trust-bar">
                     <div class="trust-bar-label">Trusted by SMBs in</div>
@@ -741,7 +744,7 @@
                         <li>Monthly performance report</li>
                         <li>Weekly optimization review</li>
                     </ul>
-                    <button class="btn btn-secondary pricing-cta" onclick="window.open('https://cal.com/nexus-ai/discovery','_blank')">Get Started</button>
+                    <button class="btn btn-secondary pricing-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
                     <div class="pricing-guarantee">90-day guarantee included</div>
                 </div>
                 <div class="pricing-card featured">
@@ -761,7 +764,7 @@
                         <li>Weekly strategy calls</li>
                         <li>Real-time dashboard access</li>
                     </ul>
-                    <button class="btn btn-primary pricing-cta" onclick="window.open('https://cal.com/nexus-ai/discovery','_blank')">Get Started</button>
+                    <button class="btn btn-primary pricing-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
                     <div class="pricing-guarantee">90-day guarantee included</div>
                 </div>
                 <div class="pricing-card">
@@ -780,7 +783,7 @@
                         <li>Performance-based pricing option</li>
                         <li>Priority support and SLA</li>
                     </ul>
-                    <button class="btn btn-secondary pricing-cta" onclick="window.open('https://cal.com/nexus-ai/discovery','_blank')">Talk to Us</button>
+                    <button class="btn btn-secondary pricing-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Request Your Free Audit</button>
                     <div class="pricing-guarantee">Custom SLA available</div>
                 </div>
             </div>
@@ -1035,41 +1038,29 @@
                 </div>
                 <form id="contact-form" onsubmit="handleFormSubmit(event)">
                     <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" name="name" required placeholder="John Smith">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Work Email</label>
-                        <input type="email" id="email" name="email" required placeholder="john@company.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone</label>
-                        <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567">
-                    </div>
-                    <div class="form-group">
                         <label for="company">Company Name</label>
                         <input type="text" id="company" name="company" required placeholder="Your Business">
                     </div>
                     <div class="form-group">
-                        <label for="industry">Industry</label>
-                        <select id="industry" name="industry" required>
-                            <option value="">Select an industry</option>
-                            <option value="home-services">Home Services</option>
-                            <option value="legal">Legal</option>
-                            <option value="real-estate">Real Estate</option>
-                            <option value="healthcare">Healthcare</option>
-                            <option value="ecommerce">E-commerce</option>
-                            <option value="other">Other</option>
-                        </select>
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required placeholder="John Smith">
                     </div>
                     <div class="form-group">
-                        <label for="challenge">What's your biggest challenge with inbound leads?</label>
-                        <textarea id="challenge" name="challenge" required placeholder="E.g., missing calls, slow response time, poor qualification..."></textarea>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="john@company.com">
                     </div>
-                    <button type="submit" class="form-submit">Get My Free Audit</button>
+                    <div class="form-group">
+                        <label for="website">Website URL</label>
+                        <input type="url" id="website" name="website" required placeholder="https://yourcompany.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="challenge">What's your biggest revenue operations challenge?</label>
+                        <textarea id="challenge" name="challenge" required placeholder="E.g., missing calls, slow lead response, manual follow-ups, poor pipeline visibility..."></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Request Your Free Audit</button>
                 </form>
                 <div class="contact-alt">
-                    Or email directly: <a href="mailto:marcus@nexus-ai.work">marcus@nexus-ai.work</a>
+                    Prefer a call? <a href="https://cal.com/nexus-ai/discovery" target="_blank" rel="noopener">Book here</a> - or email: <a href="mailto:marcus@nexus-ai.work">marcus@nexus-ai.work</a>
                 </div>
             </div>
         </div>
@@ -1118,11 +1109,10 @@
             const form = document.getElementById('contact-form');
             const successMessage = document.getElementById('form-success');
             const formData = {
+                company: document.getElementById('company').value,
                 name: document.getElementById('name').value,
                 email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                company: document.getElementById('company').value,
-                industry: document.getElementById('industry').value,
+                website: document.getElementById('website').value,
                 challenge: document.getElementById('challenge').value,
                 timestamp: new Date().toISOString()
             };
