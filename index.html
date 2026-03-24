@@ -372,9 +372,33 @@
         .footer-logo { font-size: 1.5rem; font-weight: 800; color: #ffffff; margin-bottom: 1rem; letter-spacing: -0.02em; }
         .footer-logo span { color: #3b82f6; }
 
+        /* HAMBURGER */
+        .hamburger {
+            display: none; flex-direction: column; gap: 5px; cursor: pointer;
+            background: none; border: none; padding: 4px;
+        }
+        .hamburger span {
+            display: block; width: 24px; height: 2px; background: #e5e7eb;
+            border-radius: 2px; transition: all 0.3s ease;
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
         /* MOBILE */
         @media (max-width: 768px) {
-            .nav-links { display: none; }
+            .nav-links {
+                display: none; flex-direction: column; gap: 0;
+                position: absolute; top: 100%; left: 0; right: 0;
+                background: rgba(10, 14, 26, 0.98);
+                border-bottom: 1px solid rgba(59, 130, 246, 0.15);
+                padding: 1rem 1.5rem 1.5rem;
+            }
+            .nav-links.open { display: flex; }
+            .nav-links a { padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 1rem; }
+            .nav-cta { margin-left: 0; margin-top: 1rem; text-align: center; }
+            .hamburger { display: flex; }
+            nav { position: sticky; }
             .hero { padding: 70px 0 60px; }
             .about-content { grid-template-columns: 1fr; }
             .footer-content { grid-template-columns: 1fr 1fr; gap: 2rem; }
@@ -395,13 +419,16 @@
     <nav>
         <div class="container nav-inner">
             <a href="#" class="nav-logo">NEXUS<span>AI</span></a>
-            <div class="nav-links">
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-links" id="nav-links">
                 <a href="#services">Services</a>
                 <a href="#case-studies">Results</a>
                 <a href="#pricing">Pricing</a>
                 <a href="#team">Team</a>
                 <a href="#blog">Blog</a>
-                <a href="#contact" class="btn btn-primary nav-cta">Get Free Audit</a>
+                <a href="https://cal.com/nexus-ai/discovery" target="_blank" rel="noopener" class="btn btn-primary nav-cta">Book a Call</a>
             </div>
         </div>
     </nav>
@@ -431,12 +458,12 @@
                         <div class="hero-stat-text">Time to go live</div>
                     </div>
                     <div class="hero-stat">
-                        <div class="hero-stat-number">80%+</div>
-                        <div class="hero-stat-text">Gross margin</div>
+                        <div class="hero-stat-number">90-Day</div>
+                        <div class="hero-stat-text">ROI guarantee</div>
                     </div>
                 </div>
                 <div class="hero-cta">
-                    <a href="#contact" class="btn btn-primary">Get My Free Audit</a>
+                    <a href="https://cal.com/nexus-ai/discovery" target="_blank" rel="noopener" class="btn btn-primary">Book a Free Discovery Call</a>
                     <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
                 </div>
                 <div class="trust-bar">
@@ -714,7 +741,7 @@
                         <li>Monthly performance report</li>
                         <li>Weekly optimization review</li>
                     </ul>
-                    <button class="btn btn-secondary pricing-cta" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Get Started</button>
+                    <button class="btn btn-secondary pricing-cta" onclick="window.open('https://cal.com/nexus-ai/discovery','_blank')">Get Started</button>
                     <div class="pricing-guarantee">90-day guarantee included</div>
                 </div>
                 <div class="pricing-card featured">
@@ -734,7 +761,7 @@
                         <li>Weekly strategy calls</li>
                         <li>Real-time dashboard access</li>
                     </ul>
-                    <button class="btn btn-primary pricing-cta" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Get Started</button>
+                    <button class="btn btn-primary pricing-cta" onclick="window.open('https://cal.com/nexus-ai/discovery','_blank')">Get Started</button>
                     <div class="pricing-guarantee">90-day guarantee included</div>
                 </div>
                 <div class="pricing-card">
@@ -753,7 +780,7 @@
                         <li>Performance-based pricing option</li>
                         <li>Priority support and SLA</li>
                     </ul>
-                    <button class="btn btn-secondary pricing-cta" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Talk to Us</button>
+                    <button class="btn btn-secondary pricing-cta" onclick="window.open('https://cal.com/nexus-ai/discovery','_blank')">Talk to Us</button>
                     <div class="pricing-guarantee">Custom SLA available</div>
                 </div>
             </div>
@@ -1127,6 +1154,22 @@
             allItems.forEach(i => { if (i !== item) i.classList.remove('active'); });
             item.classList.toggle('active');
         }
+
+        // Hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        hamburger.addEventListener('click', function() {
+            const isOpen = navLinks.classList.toggle('open');
+            hamburger.classList.toggle('open', isOpen);
+            hamburger.setAttribute('aria-expanded', isOpen);
+        });
+        navLinks.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('open');
+                hamburger.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', false);
+            });
+        });
 
         // Smooth nav scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
